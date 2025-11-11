@@ -1,0 +1,41 @@
+/* Header général */
+.header {
+  position: fixed; /* reste en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent; /* fond transparent */
+  padding: 10px 20px;
+  z-index: 100;
+}
+
+/* Container nav */
+.nav-container {
+  display: flex;
+  justify-content: center; /* centre les rectangles */
+  align-items: center;
+  gap: 20px; /* espace entre les rectangles */
+}
+
+/* Chaque rectangle */
+.nav-item {
+  background-color: #8caf70; /* vert pour titre */
+  color: #ffffff; /* texte blanc */
+  width: 160px; /* même largeur pour tous */
+  height: 40px; /* pas trop épais */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fomalhaut', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px; /* coins légèrement arrondis */
+}
+
+/* Hover / effet sur le rectangle */
+.nav-item:hover {
+  background-color: #9be162; /* vert clair au survol */
+  transform: translateY(-3px); /* léger mouvement vers le haut */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}

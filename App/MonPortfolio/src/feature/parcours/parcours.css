@@ -1,0 +1,115 @@
+.parcours-section {
+  height: 90vh;
+  padding: 6rem 2rem;
+  background-color: #ebe8db;
+}
+
+/* titre */
+.parcours-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #8caf70; /* tu peux remplacer par #567239 ou #adcf73 */
+}
+
+/* wrapper: colonne timeline + colonne items */
+.parcours-timeline-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* colonne gauche contenant la ligne et la boule */
+.parcours-left {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.parcours-line-wrap {
+  position: relative;
+  width: 6px;
+  min-height: 60vh; /* hauteur de la timeline */
+  display: flex;
+  justify-content: center;
+}
+
+/* ligne verticale visible (on animera scaleY) */
+.parcours-line {
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, #2e8b57 0%, #567239 100%);
+  transform-origin: top center;
+  will-change: transform;
+  border-radius: 6px;
+}
+
+/* boule */
+.parcours-ball {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #8caf70;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 0 6px rgba(173,207,115,0.08);
+  z-index: 6;
+  will-change: transform;
+}
+
+/* colonne droite: items */
+.parcours-items {
+  flex: 1;
+}
+
+/* item */
+.parcours-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.25rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  background-color: #8caf70;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+/* year */
+.parcours-item-year {
+  min-width: 72px;
+  font-weight: 700;
+  color: #1d300e;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* content */
+.parcours-item-content {
+  flex: 1;
+}
+
+.parcours-item-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.parcours-item-institution {
+  color: #1d300e;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.parcours-item-details {
+  color: #1d300e;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
