@@ -1,0 +1,124 @@
+[
+  {
+    "title": "Réaliser",
+    "levels": [
+      {
+        "name": "Niveau 1",
+        "description": "Développer des applications informatiques simples.",
+        "projects": [
+          { "name": "Projet A", "url": "https://projetA.com" },
+          { "name": "Projet B", "url": "https://projetB.com" }
+        ]
+      },
+      {
+        "name": "Niveau 2",
+        "description": "Partir des exigences et aller jusqu’à la mise en production.",
+        "projects": [
+          { "name": "Projet C", "url": "https://projetC.com" }
+        ]
+      },
+      {
+        "name": "Niveau 3",
+        "description": "Adapter des applications sur un ensemble de supports (embarqué, web, mobile, IoT…)",
+        "projects": [
+          { "name": "Projet C", "url": "https://projetC.com" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Optimiser",
+    "levels": [
+      {
+        "name": "Niveau 1",
+        "description": "Appréhender et construire des algorithmes."
+      },
+      {
+        "name": "Niveau 2",
+        "description": "Sélectionner les algorithmes adéquats selon les applications visées.",
+        "projects": [
+          { "name": "Projet D", "url": "https://projetD.com" }
+        ]
+      },
+      {
+        "name": "Niveau 3",
+        "description": "Analyser et optimiser des applications.",
+        "projects": [
+          { "name": "Projet D", "url": "https://projetD.com" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Administrer",
+    "levels": [
+      {
+        "name": "Niveau 1",
+        "description": "Installer et configurer un poste de travail."
+      },
+      {
+        "name": "Niveau 2",
+        "description": "Déployer des services sur des architectures réseaux.",
+        "projects": [
+          { "name": "Projet E", "url": "https://projetE.com" }
+        ]
+      },
+      {
+        "name": "Niveau 3",
+        "description": "Manager une équipe informatique.",
+        "projects": [
+          { "name": "Projet E", "url": "https://projetE.com" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Gérer",
+    "levels": [
+      {
+        "name": "Niveau 1",
+        "description": "Concevoir et mettre en place une solution en fonction d’un cahier des charges client."
+      },
+      {
+        "name": "Niveau 2",
+        "description": "Optimiser une base de données, un système ou un réseau selon les besoins d’un client.",
+        "projects": [
+          { "name": "Projet F", "url": "https://projetF.com" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Conduire",
+    "levels": [
+      {
+        "name": "Niveau 1",
+        "description": "Identifier les besoins des utilisateurs."
+      },
+      {
+        "name": "Niveau 2",
+        "description": "Mettre en œuvre une solution qui répond en fonction des besoins identifiés des utilisateurs."
+      }
+    ]
+  },
+  {
+    "title": "Collaborer",
+    "levels": [
+      {
+        "name": "Niveau 1",
+        "description": "Travailler en équipe sur une solution informatique.",
+        "projects": [
+          { "name": "Projet H", "url": "https://projetH.com" }
+        ]
+      },
+      {
+        "name": "Niveau 2",
+        "description": "Manager une équipe informatique.",
+        "projects": [
+          { "name": "Projet I", "url": "https://projetI.com" },
+          { "name": "Projet J", "url": "https://projetJ.com" }
+        ]
+      }
+    ]
+  }
+]

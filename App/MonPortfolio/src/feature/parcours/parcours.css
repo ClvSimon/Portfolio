@@ -1,13 +1,16 @@
 .parcours-section {
-  height: 90vh;
+  height: 80vh;
   padding: 6rem 2rem;
   background-color: #ebe8db;
+  border-width:5px;
+  border-color: red;
+  border-style: solid; /* obligatoire */
 }
 
 /* titre */
 .parcours-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
   color: #8caf70; /* tu peux remplacer par #567239 ou #adcf73 */
 }
@@ -55,7 +58,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #8caf70;
+  background: #435966;
   box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 0 6px rgba(173,207,115,0.08);
   z-index: 6;
   will-change: transform;
@@ -74,16 +77,48 @@
   padding: 1.25rem 1rem;
   margin-bottom: 1.5rem;
   border-radius: 10px;
-  background-color: #8caf70;
   box-shadow: 0 4px 18px rgba(0,0,0,0.4);
   position: relative;
+  overflow: hidden; /* pour le ::before */
+  color: white; /* le texte reste lisible */
+}
+
+/* pseudo-élément pour l'image de fond en noir et blanc */
+.parcours-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%); /* noir et blanc par défaut */
+  z-index: 0;
+  border-radius: 10px;
+  transition: filter 0.5s ease; /* animation douce */
+}
+
+/* au survol, redevient couleur */
+.parcours-item:hover::before {
+  filter: grayscale(0%);
+}
+
+/* overlay optionnel pour contraste du texte */
+.parcours-item-overlay {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border-radius: 10px;
 }
 
 /* year */
 .parcours-item-year {
+  position: relative; /* pour être au-dessus du ::before et overlay */
+  z-index: 2;
   min-width: 72px;
   font-weight: 700;
-  color: #1d300e;
+  color: #8caf70;
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -96,20 +131,26 @@
 }
 
 .parcours-item-title {
+  position: relative; /* pour être au-dessus du ::before et overlay */
+  z-index: 2;
   font-size: 1.05rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #8caf70;
   margin-bottom: 0.25rem;
 }
 
 .parcours-item-institution {
-  color: #1d300e;
+  position: relative; /* pour être au-dessus du ::before et overlay */
+  z-index: 2;
+  color: #fff;
   font-weight: 600;
   margin-bottom: 0.35rem;
 }
 
 .parcours-item-details {
-  color: #1d300e;
+  position: relative; /* pour être au-dessus du ::before et overlay */
+  z-index: 2;
+  color: #fff;
   font-size: 0.95rem;
   line-height: 1.4;
 }

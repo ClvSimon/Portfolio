@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ParcoursCard from "./parcoursCard";
 import "./parcours.css";
+
+import bg1 from "../../assets/college-batiment.jpg";
+import bg2 from "../../assets/lycee-batiment2.jpg";
+import bg3 from "../../assets/iut-batiment2.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,19 +15,38 @@ type Entry = {
   title: string;
   institution: string;
   details?: string;
+  bgImage: string;
 };
 
 const ENTRIES: Entry[] = [
-  { year: "2025", title: "Licence Informatique (en cours)", institution: "Université X", details: "Spécialisation en développement web et algorithmes" },
-  { year: "2024", title: "DUT / IUT Informatique", institution: "IUT Y", details: "Projets : audit app, modélisation graphes" },
-  { year: "2022", title: "Baccalauréat", institution: "Lycée Z", details: "Section scientifique" },
+  {
+    year: "2025",
+    title: "Licence Informatique (en cours)",
+    institution: "Université X",
+    details: "Spécialisation en développement web et algorithmes",
+    bgImage: bg1,
+  },
+  {
+    year: "2024",
+    title: "DUT / IUT Informatique",
+    institution: "IUT Y",
+    details: "Projets : audit app, modélisation graphes",
+    bgImage: bg2,
+  },
+  {
+    year: "2022",
+    title: "Baccalauréat",
+    institution: "Lycée Z",
+    details: "Section scientifique",
+    bgImage: bg3,
+  },
 ];
 
-export default function Parcours() {
+export default function ParcoursPage() {
   const containerRef = useRef<HTMLElement | null>(null);
   const lineRef = useRef<HTMLDivElement | null>(null);
   const ballRef = useRef<HTMLDivElement | null>(null);
-  const itemsRef = useRef<(HTMLDivElement | null)[]>([]); // <- typing as array of nullable divs
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -106,19 +130,16 @@ export default function Parcours() {
         </div>
 
         <div className="parcours-items">
-          {ENTRIES.map((e, idx) => (
-            <div
-              key={e.year + idx}
-              className="parcours-item"
-              ref={(el) => { itemsRef.current[idx] = el }} // <- callback returns void
-            >
-              <div className="parcours-item-year">{e.year}</div>
-              <div className="parcours-item-content">
-                <div className="parcours-item-title">{e.title}</div>
-                <div className="parcours-item-institution">{e.institution}</div>
-                {e.details && <div className="parcours-item-details">{e.details}</div>}
-              </div>
-            </div>
+          {ENTRIES.map((entry, idx) => (
+            <ParcoursCard
+              key={entry.year + idx}
+              ref={(el) => { itemsRef.current[idx] = el }} // <-- bien retourner void
+              year={entry.year}
+              title={entry.title}
+              institution={entry.institution}
+              details={entry.details}
+              bgImage={entry.bgImage}
+            />
           ))}
         </div>
       </div>

@@ -1,0 +1,137 @@
+.competences-section {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1000px;
+  background-color: #ebe8db;
+  border-width:5px;
+  border-color:fuchsia;
+  border-style: solid; /* obligatoire */
+}
+
+.competences-title{
+  font-size: 2.5rem;
+  color: #8caf70;
+  top: 0;
+  margin-bottom: 150px;
+}
+
+.competences-carousel {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  transform-style: preserve-3d;
+}
+
+.competences-buttons-left {
+  position: fixed;  /* reste visible même quand tu scrolles */
+  top: 50%;         /* centre verticalement */
+  left: 250px;       /* distance depuis le bord gauche */
+  transform: translateY(-50%); /* ajuste pour le centrer exactement */
+  background-color: transparent;
+  color: #567239;
+  border-radius: 6px;
+  font-size: 40px;
+}
+
+.competences-buttons-right {
+  position: fixed;  /* reste visible même quand tu scrolles */
+  top: 50%;         /* centre verticalement */
+  right: 250px;       /* distance depuis le bord gauche */
+  background-color: transparent;
+  color: #567239;
+  border-radius: 6px;
+  font-size: 40px;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+}
+
+/*__________________ css de la card en bas __________________*/
+
+.competence-card {
+  position: relative;
+  width: 250px;         /* plus large */
+  height: 290px;        /* plus haut */
+  background-color: #8caf70;
+  display: flex;
+  flex-direction: column;    /* empile verticalement title / level / projects */
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.competence-card-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0;
+  width: 100%;
+  background-size: cover; /* pour que l'image remplisse le bloc */
+  background-position: center; /* centrer l'image */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  color: #435966;
+}
+
+.competence-card-level {
+  width: 100%;
+}
+
+.competence-card-level-buttons {
+  height: 40px;
+  display: flex;
+  width: 100%;
+}
+
+.competence-card-level-buttons button {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  font-size: 15px;
+  border-radius: 0px;
+  background-color: #435966;
+  color: white;
+  white-space: nowrap;
+  transition: background-color 0.4s;
+}
+
+.competence-card-level-buttons button.active {
+  background-color: #8caf70;
+}
+
+.competence-card-level-buttons button:hover {
+  background-color: #8caf70;
+}
+
+.competence-card-description {
+  font-size: 15px;
+  text-align: center;
+  margin: 15px;
+}
+
+.competence-card-projects ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.competence-card-projects a {
+  color: white;
+}
+
+.competence-card-projects a:hover {
+  color: #567239;
+}
+
+
+
+
+

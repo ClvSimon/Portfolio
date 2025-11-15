@@ -21,9 +21,10 @@ export default function Header() {
       <nav className="nav-container">
         <div className="nav-item">Accueil</div>
         <div className="nav-item">Présentation</div>
-        <div className="nav-item">Formation</div>
+        <div className="nav-item">Parcours</div>
         <div className="nav-item">Compétences</div>
         <div className="nav-item">Projets</div>
+        <div className="nav-item">Contact</div>
       </nav>
     </div>
   );

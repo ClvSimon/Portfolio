@@ -3,6 +3,7 @@ import Header from "./components/layouts/header";
 import Accueils from "./feature/accueil/accueil"; // correspond au composant Accueils
 import Presentation from "./feature/présentation/presentation";
 import Parcours from "./feature/parcours/parcours";
+import Competences from "./feature/competences/competences";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Accueils />
       <Presentation />
       <Parcours/>
+      <Competences/>
 
     </>
   );

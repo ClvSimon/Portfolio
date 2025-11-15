@@ -35,7 +35,7 @@
 
 /* Hover / effet sur le rectangle */
 .nav-item:hover {
-  background-color: #9be162; /* vert clair au survol */
+  background-color: #435966; /* vert clair au survol */
   transform: translateY(-3px); /* léger mouvement vers le haut */
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
