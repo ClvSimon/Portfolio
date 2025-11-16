@@ -1,10 +1,13 @@
+/* SECTION PARCOURS — prend exactement 100vh, sans débordements */
 .parcours-section {
-  height: 80vh;
+  min-height: 100vh;      /* obligatoire pour que la section prenne tout l'écran */
+  height: 100vh;          /* force la cohérence sur tous les navigateurs */
   padding: 6rem 2rem;
   background-color: #ebe8db;
   border-width:5px;
   border-color: red;
-  border-style: solid; /* obligatoire */
+  border-style: solid;
+  box-sizing: border-box; /* empêche padding d'augmenter la hauteur réelle */
 }
 
 /* titre */
@@ -12,10 +15,10 @@
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #8caf70; /* tu peux remplacer par #567239 ou #adcf73 */
+  color: #8caf70;
 }
 
-/* wrapper: colonne timeline + colonne items */
+/* wrapper timeline + items */
 .parcours-timeline-wrapper {
   max-width: 1000px;
   margin: 0 auto;
@@ -23,24 +26,27 @@
   gap: 2rem;
   align-items: flex-start;
   position: relative;
+  overflow: visible;
 }
 
-/* colonne gauche contenant la ligne et la boule */
+/* colonne gauche contenant la ligne */
 .parcours-left {
   width: 120px;
   display: flex;
   justify-content: center;
+  overflow: visible;
 }
 
 .parcours-line-wrap {
   position: relative;
   width: 6px;
-  min-height: 60vh; /* hauteur de la timeline */
+  min-height: 60vh;
   display: flex;
   justify-content: center;
+  overflow: visible;
 }
 
-/* ligne verticale visible (on animera scaleY) */
+/* ligne verticale animée */
 .parcours-line {
   width: 6px;
   height: 100%;
@@ -50,7 +56,7 @@
   border-radius: 6px;
 }
 
-/* boule */
+/* boule du parcours */
 .parcours-ball {
   position: absolute;
   left: 50%;
@@ -64,9 +70,10 @@
   will-change: transform;
 }
 
-/* colonne droite: items */
+/* colonne droite */
 .parcours-items {
   flex: 1;
+  overflow: visible;
 }
 
 /* item */
@@ -79,11 +86,11 @@
   border-radius: 10px;
   box-shadow: 0 4px 18px rgba(0,0,0,0.4);
   position: relative;
-  overflow: hidden; /* pour le ::before */
-  color: white; /* le texte reste lisible */
+  overflow: hidden; /* gardé */
+  color: white;
 }
 
-/* pseudo-élément pour l'image de fond en noir et blanc */
+/* image de fond en niveau de gris */
 .parcours-item::before {
   content: '';
   position: absolute;
@@ -91,18 +98,18 @@
   background-image: inherit;
   background-size: cover;
   background-position: center;
-  filter: grayscale(100%); /* noir et blanc par défaut */
+  filter: grayscale(100%);
   z-index: 0;
   border-radius: 10px;
-  transition: filter 0.5s ease; /* animation douce */
+  transition: filter 0.5s ease;
 }
 
-/* au survol, redevient couleur */
+/* au survol → en couleur */
 .parcours-item:hover::before {
   filter: grayscale(0%);
 }
 
-/* overlay optionnel pour contraste du texte */
+/* overlay sombre */
 .parcours-item-overlay {
   content: '';
   position: absolute;
@@ -112,9 +119,8 @@
   border-radius: 10px;
 }
 
-/* year */
 .parcours-item-year {
-  position: relative; /* pour être au-dessus du ::before et overlay */
+  position: relative;
   z-index: 2;
   min-width: 72px;
   font-weight: 700;
@@ -125,13 +131,12 @@
   justify-content: center;
 }
 
-/* content */
 .parcours-item-content {
   flex: 1;
 }
 
 .parcours-item-title {
-  position: relative; /* pour être au-dessus du ::before et overlay */
+  position: relative;
   z-index: 2;
   font-size: 1.05rem;
   font-weight: 800;
@@ -140,7 +145,7 @@
 }
 
 .parcours-item-institution {
-  position: relative; /* pour être au-dessus du ::before et overlay */
+  position: relative;
   z-index: 2;
   color: #fff;
   font-weight: 600;
@@ -148,7 +153,7 @@
 }
 
 .parcours-item-details {
-  position: relative; /* pour être au-dessus du ::before et overlay */
+  position: relative;
   z-index: 2;
   color: #fff;
   font-size: 0.95rem;

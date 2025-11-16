@@ -1,48 +1,36 @@
+/* === Section principale (plus de wrapper) === */
 .competences-section {
-  height: 90vh;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  perspective: 1000px;
+  justify-content: center;
+  gap: 10rem;                 /* espace automatique entre les enfants */
+  padding: 3rem 1.25rem;     /* respiration sur les bords */
   background-color: #ebe8db;
-  border-width:5px;
-  border-color:fuchsia;
-  border-style: solid; /* obligatoire */
+  border: 5px solid fuchsia;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+  perspective: 1000px;
 }
 
-.competences-title{
-  font-size: 2.5rem;
+/* === Titre === */
+.competences-title {
+  font-size: clamp(1.6rem, 2.5vw, 2.5rem);
   color: #8caf70;
-  top: 0;
-  margin-bottom: 150px;
+  margin: 0;                 /* tout géré par gap */
+  line-height: 1.1;
+  z-index: 10;
 }
 
+/* === Carousel 3D (NE PAS TOUCHER au style du carrousel) === */
 .competences-carousel {
   position: relative;
   width: 300px;
   height: 200px;
   transform-style: preserve-3d;
-}
-
-.competences-buttons-left {
-  position: fixed;  /* reste visible même quand tu scrolles */
-  top: 50%;         /* centre verticalement */
-  left: 250px;       /* distance depuis le bord gauche */
-  transform: translateY(-50%); /* ajuste pour le centrer exactement */
-  background-color: transparent;
-  color: #567239;
-  border-radius: 6px;
-  font-size: 40px;
-}
-
-.competences-buttons-right {
-  position: fixed;  /* reste visible même quand tu scrolles */
-  top: 50%;         /* centre verticalement */
-  right: 250px;       /* distance depuis le bord gauche */
-  background-color: transparent;
-  color: #567239;
-  border-radius: 6px;
-  font-size: 40px;
 }
 
 .carousel-item {
@@ -53,6 +41,64 @@
   transform-style: preserve-3d;
 }
 
+/* === Boutons sous le carousel === */
+.competences-buttons-container {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+.competences-button {
+  background: #fff0;         /* transparent but easier to style later */
+  color: #8caf70;
+  border: 2px solid rgba(86,114,57,0.12);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: transform 180ms ease, color 180ms ease, box-shadow 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.competences-button:hover {
+  transform: translateY(-3px);
+  color: #435966;
+  box-shadow: 0 6px 18px rgba(60,80,40,0.08);
+}
+
+.competences-button:active {
+  transform: translateY(-1px) scale(.995);
+}
+
+/* === Responsiveness === */
+@media (max-width: 720px) {
+  .competences-section {
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .competences-carousel {
+    width: min(86vw, 360px);
+    height: calc(min(86vw, 360px) * 0.65);
+  }
+
+  .competences-buttons-container {
+    max-width: 320px;
+    gap: 1rem;
+  }
+
+  .competences-button {
+    font-size: 1.4rem;
+    padding: 0.45rem 0.9rem;
+  }
+}
 /*__________________ css de la card en bas __________________*/
 
 .competence-card {
@@ -130,8 +176,3 @@
 .competence-card-projects a:hover {
   color: #567239;
 }
-
-
-
-
-

@@ -1,0 +1,88 @@
+/* Conteneur principal */
+.skills-section {
+  width: 100%;
+  min-height: 80vh;
+  padding: 6rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #fbfbf8 0%, #f0efe8 100%);
+  color: #24321a;
+  opacity: 0;
+  transform: translateX(0);
+}
+
+/* Inner wrapper (centrage et largeur max) */
+.skills-inner {
+  width: min(1100px, 94%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* Titre */
+.skills-title {
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+  color: #567239;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Colonnes des skills */
+.skills-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Colonne individuelle */
+.skills-column {
+  background: rgba(255,255,255,0.6);
+  border-radius: 12px;
+  padding: 1.4rem;
+  box-shadow: 0 8px 30px rgba(40,60,30,0.06);
+  border: 1px solid rgba(86,114,57,0.06);
+}
+
+/* Sous-titre colonne */
+.skills-subtitle {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.1rem;
+  color: #3e5a2b;
+  font-weight: 600;
+}
+
+/* Liste */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: #28321a;
+  line-height: 1.45;
+}
+
+/* Note explicative */
+.skills-note {
+  margin: 0;
+  color: #55663e;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .skills-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-section {
+    padding: 4rem 1rem;
+  }
+}

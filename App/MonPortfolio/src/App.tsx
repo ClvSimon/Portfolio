@@ -4,6 +4,8 @@ import Accueils from "./feature/accueil/accueil"; // correspond au composant Acc
 import Presentation from "./feature/présentation/presentation";
 import Parcours from "./feature/parcours/parcours";
 import Competences from "./feature/competences/competences";
+import Skills from "./feature/skills/skills";
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
       <Accueils />
       <Presentation />
       <Parcours/>
+      <Skills/>
       <Competences/>
 
     </>

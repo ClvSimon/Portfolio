@@ -1,24 +1,63 @@
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import CompetenceCard from "./competencesCard";
-import COMPETENCES from "./competencesData.json"; // ton JSON existant
+import COMPETENCES from "./competencesData.json";
 import "./competences.css";
 
 export default function CompetencesPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
+
+  // séparation entre l'index qui contrôle la rotation (immédiat)
+  // et l'index "actif" qui contrôle l'état visuel (apparaît après delay)
+  const [rotationIndex, setRotationIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const next = () => setActiveIndex((prev) => (prev + 1) % COMPETENCES.length);
-  const prev = () => setActiveIndex((prev) => (prev - 1 + COMPETENCES.length) % COMPETENCES.length);
+  // verrou pour empêcher le spam de boutons pendant transition
+  const [isLocked, setIsLocked] = useState(false);
 
+  // réglages (ajuste ces valeurs)
+  const activationDelay = 500; // ms avant que la nouvelle carte soit marquée active
+  const rotationDuration = 800; // ms durée de la rotation GSAP (doit correspondre à gsap.duration)
+
+  // navigation
+  const next = () => {
+    if (isLocked) return;
+    setIsLocked(true);
+
+    const newRotation = (rotationIndex + 1) % COMPETENCES.length;
+    setRotationIndex(newRotation); // déclenche rotation immédiatement
+
+    // après un délai, on marque la carte active (sépare l'apparition visuelle)
+    setTimeout(() => {
+      setActiveIndex(newRotation);
+      // relâche le verrou après la durée effective (sécurité)
+      setTimeout(() => setIsLocked(false), Math.max(rotationDuration, activationDelay));
+    }, activationDelay);
+  };
+
+  const prev = () => {
+    if (isLocked) return;
+    setIsLocked(true);
+
+    const newRotation = (rotationIndex - 1 + COMPETENCES.length) % COMPETENCES.length;
+    setRotationIndex(newRotation);
+
+    setTimeout(() => {
+      setActiveIndex(newRotation);
+      setTimeout(() => setIsLocked(false), Math.max(rotationDuration, activationDelay));
+    }, activationDelay);
+  };
+
+  // useEffect qui anime la rotation — écoute rotationIndex (immédiat)
   useEffect(() => {
     const total = COMPETENCES.length;
     const radius = 300;
     const angle = 360 / total;
 
     cardsRef.current.forEach((card, i) => {
-      const offset = (i - activeIndex) * angle;
+      if (!card) return;
+      const offset = (i - rotationIndex) * angle;
       const rad = (offset * Math.PI) / 180;
 
       gsap.to(card, {
@@ -26,17 +65,18 @@ export default function CompetencesPage() {
         x: radius * Math.sin(rad),
         z: radius * Math.cos(rad),
         transformOrigin: "50% 50% 0px",
-        duration: 0.8,
+        duration: rotationDuration / 1000, // gsap attend des secondes
         ease: "power2.inOut",
       });
     });
-  }, [activeIndex]);
-
+  }, [rotationIndex]);
 
   return (
     <section className="competences-section" ref={containerRef}>
+      {/* Titre */}
       <h2 className="competences-title">Compétences</h2>
 
+      {/* Carousel */}
       <div className="competences-carousel">
         {COMPETENCES.map((comp, idx) => (
           <div
@@ -49,19 +89,36 @@ export default function CompetencesPage() {
             <CompetenceCard
               title={comp.title}
               levels={comp.levels}
+              // isActive dépend maintenant de activeIndex (apparaît après activationDelay)
               isActive={
-                idx === activeIndex || // carte active
-                idx === (activeIndex - 1 + COMPETENCES.length) % COMPETENCES.length || // carte avant
-                idx === (activeIndex + 1) % COMPETENCES.length // carte après
+                idx === activeIndex ||
+                idx === (activeIndex - 1 + COMPETENCES.length) % COMPETENCES.length ||
+                idx === (activeIndex + 1) % COMPETENCES.length
               }
             />
           </div>
         ))}
       </div>
 
-      <button className="competences-buttons-left" onClick={prev}>◀</button>
-      <button className="competences-buttons-right" onClick={next}>▶</button>
-
+      {/* Boutons de navigation */}
+      <div className="competences-buttons-container">
+        <button
+          className="competences-button"
+          onClick={prev}
+          disabled={isLocked}
+          aria-disabled={isLocked}
+        >
+          ◀
+        </button>
+        <button
+          className="competences-button"
+          onClick={next}
+          disabled={isLocked}
+          aria-disabled={isLocked}
+        >
+          ▶
+        </button>
+      </div>
     </section>
   );
 }
