@@ -1,49 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
 import "./skills.css";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Skills: React.FC = () => {
-  const rootRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { xPercent: 30, autoAlpha: 0 },
-        {
-          xPercent: 0,
-          autoAlpha: 1,
-          ease: "power3.out",
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            end: "top 40%",
-            toggleActions: "play none none reverse",
-            // scrub: true,
-            // markers: true,
-          },
-        }
-      );
-    }, el);
-
-    // assure que ScrollTrigger calcule correctement après montage
-    ScrollTrigger.refresh();
-
-    return () => {
-      ctx.revert();
-      // optionnel : ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   return (
-    <section className="skills-section" ref={rootRef} id="skills-page">
+    <section className="skills-section" id="skills-page">
       <div className="skills-inner">
         <h2 className="skills-title">Skills</h2>
 
@@ -72,7 +32,7 @@ const Skills: React.FC = () => {
         </div>
 
         <p className="skills-note">
-          Place ce composant après ta section "Parcours" dans le DOM pour que l'animation se déclenche au scroll.
+          Place ce composant après ta section "Parcours" dans le DOM.
         </p>
       </div>
     </section>

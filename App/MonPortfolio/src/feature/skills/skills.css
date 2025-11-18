@@ -1,7 +1,8 @@
 /* Conteneur principal */
 .skills-section {
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
+  height: 100vh;
   padding: 6rem 1.5rem;
   box-sizing: border-box;
   display: flex;
@@ -9,8 +10,7 @@
   justify-content: center;
   background: linear-gradient(180deg, #fbfbf8 0%, #f0efe8 100%);
   color: #24321a;
-  opacity: 0;
-  transform: translateX(0);
+  /* Animation supprimée : opacité et transform initial retirés */
 }
 
 /* Inner wrapper (centrage et largeur max) */
@@ -41,11 +41,11 @@
 
 /* Colonne individuelle */
 .skills-column {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 12px;
   padding: 1.4rem;
-  box-shadow: 0 8px 30px rgba(40,60,30,0.06);
-  border: 1px solid rgba(86,114,57,0.06);
+  box-shadow: 0 8px 30px rgba(40, 60, 30, 0.06);
+  border: 1px solid rgba(86, 114, 57, 0.06);
 }
 
 /* Sous-titre colonne */

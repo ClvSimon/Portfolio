@@ -51,6 +51,35 @@ button:focus,
 button:focus-visible {
 }
 
+.scroll-container {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* pour éviter un scroll horizontal non voulu */
+}
+
+/* Vertical scroll sections restent 100vh */
+.vertical-scroll-section {
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+}
+
+/* Conteneur horizontal */
+.horizontal-scroll-container {
+  display: flex;          /* aligne les enfants horizontalement */
+  flex-direction: row;
+  height: 100vh;
+}
+
+/* Chaque section horizontale */
+.scroll-section {
+  min-width: 100vw;       /* prend exactement 1 écran horizontal */
+  height: 100vh;
+  flex-shrink: 0;         /* empêche la section de rétrécir */
+}
+
+
+
 /* Mode clair */
 @media (prefers-color-scheme: light) {
   a:hover {

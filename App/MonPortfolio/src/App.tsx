@@ -1,22 +1,28 @@
 import React from "react";
 import Header from "./components/layouts/header";
-import Accueils from "./feature/accueil/accueil"; // correspond au composant Accueils
+import Accueils from "./feature/accueil/accueil";
 import Presentation from "./feature/présentation/presentation";
 import Parcours from "./feature/parcours/parcours";
-import Competences from "./feature/competences/competences";
 import Skills from "./feature/skills/skills";
-
+import Competences from "./feature/competences/competences";
+import ScrollManager from "./routes/ScrollManager";
 
 function App() {
   return (
     <>
+      {/* Header fixe en haut */}
       <Header />
-      <Accueils />
-      <Presentation />
-      <Parcours/>
-      <Skills/>
-      <Competences/>
 
+      {/* Toutes les sections scrollables passent dans ScrollManager */}
+      <ScrollManager
+        sections={[
+          <Accueils />,
+          <Presentation />,
+          <Parcours />,
+          <Skills />,
+          <Competences />,
+        ]}
+      />
     </>
   );
 }

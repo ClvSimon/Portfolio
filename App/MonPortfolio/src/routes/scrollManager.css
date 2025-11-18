@@ -1,0 +1,16 @@
+.scroll-container {
+  width: 100%;
+}
+
+.scroll-section {
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.horizontal-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: max-content;
+}
