@@ -3,17 +3,16 @@
   width: 100%;
   min-height: 100vh;
   height: 100vh;
-  padding: 6rem 1.5rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #fbfbf8 0%, #f0efe8 100%);
+  justify-content: left;
   color: #24321a;
-  /* Animation supprimée : opacité et transform initial retirés */
 }
 
-/* Inner wrapper (centrage et largeur max) */
+/* conserve ton .skills-section actuel (min-height 100vh etc.) */
+
+/* inner wrapper inchangé */
 .skills-inner {
   width: min(1100px, 94%);
   margin: 0 auto;
@@ -23,66 +22,45 @@
   align-items: stretch;
 }
 
-/* Titre */
-.skills-title {
-  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
-  color: #567239;
-  margin: 0;
-  font-weight: 700;
-}
+/* titre inchangé */
+.skills-title { font-size: clamp(1.6rem, 2.8vw, 2.6rem); color: #567239; margin: 0; font-weight: 700; }
 
-/* Colonnes des skills */
+/* --- variante empilée (top / bottom) sans fond --- */
+/* on garde le DOM en deux "colonnes" mais on les affiche en colonne */
 .skills-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* empilé verticalement */
   gap: 2.5rem;
   align-items: start;
 }
 
-/* Colonne individuelle */
+/* colonne individuelle : supprimer le fond / bord / ombre si tu veux "texte seul" */
 .skills-column {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
-  padding: 1.4rem;
-  box-shadow: 0 8px 30px rgba(40, 60, 30, 0.06);
-  border: 1px solid rgba(86, 114, 57, 0.06);
-}
-
-/* Sous-titre colonne */
-.skills-subtitle {
-  margin: 0 0 0.6rem 0;
-  font-size: 1.1rem;
-  color: #3e5a2b;
-  font-weight: 600;
-}
-
-/* Liste */
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  color: #28321a;
-  line-height: 1.45;
+  align-items: center;     /* centre horizontalement les enfants */
+  justify-content: center; /* centre verticalement si la colonne a une hauteur */
+  text-align: left;      /* centre le texte des éléments (h3, ul, li) */
+  padding: 1rem 0;         /* optionnel : espace intérieur */
 }
 
-/* Note explicative */
-.skills-note {
-  margin: 0;
-  color: #55663e;
-  font-size: 0.95rem;
-  opacity: 0.95;
+/* Séparateur fin entre les deux blocs (ligne horizontale) */
+.skills-separator {
+  width: 100%;
+  height: 1px;
+  background: rgba(86,114,57,0.12);
+  margin: 0.6rem 0;
 }
 
-/* Responsive */
+/* sous-titre et liste restent inchangés */
+.skills-subtitle { margin: 0 0 0.6rem 0; font-size: 1.1rem; color: #3e5a2b; font-weight: 600; }
+.skills-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; color: #28321a; line-height: 1.45; }
+
+/* note explicative */
+.skills-note { margin: 0; color: #55663e; font-size: 0.95rem; opacity: 0.95; }
+
+/* Responsive : tout reste empilé, raccourcir paddings */
 @media (max-width: 900px) {
-  .skills-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-section {
-    padding: 4rem 1rem;
-  }
+  .skills-section { padding: 4rem 1rem; }
+  .skills-columns { gap: 1.25rem; }
 }

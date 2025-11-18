@@ -1,6 +1,7 @@
 /* Reset et styles globaux */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --title-font: "Georgia", "Times New Roman", Times, serif; /* Serif pour titres */
+  --content-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Sans‑serif pour le contenu */
   line-height: 1.5;
   font-weight: 400;
 
@@ -21,8 +22,30 @@ html, body {
   min-height: 100%;
   background: none; /* les containers gèrent leur fond */
   display: block;
+  min-width: 100%;
   max-width: 100%;
 }
+
+/* Titres : Serif */
+h1, h2, h3, h4, h5, h6,
+.skills-title,
+.skills-subtitle {
+  font-family: var(--title-font);
+  font-weight: 600; /* ou 700 selon ton goût */
+}
+
+/* S'assurer que les listes et paragraphes héritent du sans‑serif */
+p, li, .skills-list, a, button {
+  font-family: var(--content-font);
+}
+
+/* Option : si tu veux charger une webfont (ex : Merriweather pour les titres et Inter pour le contenu)
+   - Ajouter dans ton index.html :
+     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+   - Puis remplacer les variables :
+     --title-font: "Merriweather", Georgia, serif;
+     --content-font: "Inter", system-ui, ...;
+*/
 
 a {
   font-weight: 500;

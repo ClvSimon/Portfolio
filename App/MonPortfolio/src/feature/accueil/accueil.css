@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 100vh;  /* au moins un écran */
   overflow: hidden;   /* <-- supprimer cette ligne */
-  position: relative; /* <-- ajouter pour normaliser le flux */
+  position: fixed; /* <-- ajouter pour normaliser le flux */
 }
 
 /* Logo centré */
