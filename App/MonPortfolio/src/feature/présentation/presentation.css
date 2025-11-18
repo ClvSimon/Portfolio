@@ -25,6 +25,9 @@
   border-top-right-radius: 15px;
   top: -85px;
 }
+.bottom-center1 .bottom-center2{
+  color: #8caf70;
+}
 
 /* colonne gauche */
 .presentation-left {
@@ -52,14 +55,12 @@
 }
 
 .presentation-title {
-  font-size: 2rem;
-  color: #8caf70;
+  font-size: 4rem;
   margin-bottom: 1rem;
 }
 
 .presentation-text p {
   font-size: 1rem;
   line-height: 1.4;
-  color: #1d300e;
   margin-bottom: 0.75rem;
 }

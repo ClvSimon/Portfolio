@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: left;
-  color: #24321a;
+  background-color: #ebe8db;
 }
 
 /* conserve ton .skills-section actuel (min-height 100vh etc.) */
@@ -22,15 +22,12 @@
   align-items: stretch;
 }
 
-/* titre inchangé */
-.skills-title { font-size: clamp(1.6rem, 2.8vw, 2.6rem); color: #567239; margin: 0; font-weight: 700; }
-
 /* --- variante empilée (top / bottom) sans fond --- */
 /* on garde le DOM en deux "colonnes" mais on les affiche en colonne */
 .skills-columns {
   display: grid;
   grid-template-columns: 1fr; /* empilé verticalement */
-  gap: 2.5rem;
+  gap: 0.6rem;
   align-items: start;
 }
 
@@ -41,7 +38,6 @@
   align-items: center;     /* centre horizontalement les enfants */
   justify-content: center; /* centre verticalement si la colonne a une hauteur */
   text-align: left;      /* centre le texte des éléments (h3, ul, li) */
-  padding: 1rem 0;         /* optionnel : espace intérieur */
 }
 
 /* Séparateur fin entre les deux blocs (ligne horizontale) */
@@ -49,15 +45,27 @@
   width: 100%;
   height: 1px;
   background: rgba(86,114,57,0.12);
-  margin: 0.6rem 0;
+  margin: 0rem 0;
 }
 
 /* sous-titre et liste restent inchangés */
-.skills-subtitle { margin: 0 0 0.6rem 0; font-size: 1.1rem; color: #3e5a2b; font-weight: 600; }
-.skills-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; color: #28321a; line-height: 1.45; }
-
-/* note explicative */
-.skills-note { margin: 0; color: #55663e; font-size: 0.95rem; opacity: 0.95; }
+.skills-subtitle { 
+  margin: 0 0 0.6rem 0; 
+  font-size: 4rem; 
+  font-weight: 600; 
+}
+.skills-list { 
+  font-size: 1.1rem; 
+  list-style: none; 
+  padding: 0; 
+  margin-left: 125px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.6rem; 
+  color: #28321a; 
+  line-height: 1.45; 
+  font-weight: 500; 
+}
 
 /* Responsive : tout reste empilé, raccourcir paddings */
 @media (max-width: 900px) {

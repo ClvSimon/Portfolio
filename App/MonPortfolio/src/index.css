@@ -32,11 +32,13 @@ h1, h2, h3, h4, h5, h6,
 .skills-subtitle {
   font-family: var(--title-font);
   font-weight: 600; /* ou 700 selon ton goût */
+  color: #8caf70;
 }
 
 /* S'assurer que les listes et paragraphes héritent du sans‑serif */
-p, li, .skills-list, a, button {
+p, li, .skills-list, a, button,div {
   font-family: var(--content-font);
+  color: #435966;
 }
 
 /* Option : si tu veux charger une webfont (ex : Merriweather pour les titres et Inter pour le contenu)

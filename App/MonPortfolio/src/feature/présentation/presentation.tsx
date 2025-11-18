@@ -9,58 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Presentation() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-  const ctx = gsap.context(() => {
-
-    // 1️⃣ TITRE — arrive à 70%
-    gsap.from(".presentation-title", {
-      opacity: 0,
-      y: 40,
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".presentation-title",
-        start: "top 100%",  // déclenchement très précis
-        once: true,
-      }
-    });
-
-    // 2️⃣ IMAGE — arrive plus tard, à 85%
-    gsap.from(".presentation-img", {
-      opacity: 0,
-      x: -200,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".presentation-img",
-        start: "top 70%",
-        once: true,
-      }
-    });
-
-    // 3️⃣ PARAGRAPHES — chacun se déclenche indépendamment
-    gsap.utils.toArray<HTMLElement>(".presentation-text p").forEach((p, index) => {
-      gsap.from(p, {
-        opacity: 0,
-        y: 25,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: p,
-          start: `top ${88 + index * 4}%`,
-          once: true
-        }
-      });
-    });
-
-
-  }, containerRef);
-
-  return () => ctx.revert();
-}, []);
-
-
-
   return (
     <section ref={containerRef} className="page2 presentation-container">
         <div className="bottom-center">

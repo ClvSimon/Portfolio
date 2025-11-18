@@ -12,67 +12,87 @@ const Skills: React.FC = () => {
   const softRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-  const section = sectionRef.current;
-  const stack = stackRef.current;
-  const hard = hardRef.current;
-  const soft = softRef.current;
-  if (!section || !stack || !hard || !soft) return;
+    const section = sectionRef.current;
+    const stack = stackRef.current;
+    const hard = hardRef.current;
+    const soft = softRef.current;
+    if (!section || !stack || !hard || !soft) return;
 
-  // ---------------------------
-  // Initial states
-  // ---------------------------
-  // texte/positions des blocs
-  gsap.set(hard, { autoAlpha: 0, x: "80vw" });
-  gsap.set(soft, { autoAlpha: 0, x: "80vw" });
+    // ---------------------------
+    // Initial states
+    // ---------------------------
 
-  // fond initial de la section (assure que le départ est bien la couleur souhaitée)
-  section.style.backgroundColor = "#ebe8db";
+    // Colonnes : invisibles et décalées
+    gsap.set([hard, soft], { autoAlpha: 0, x: "80vw" });
 
-  // Optionnel : éviter overflow visuel
-  section.style.overflow = "hidden";
+    // Titres + chaque li séparément
+    const hardTitle = hard.querySelector("h3");
+    const hardListItems = hard.querySelectorAll("li");
+    const softTitle = soft.querySelector("h3");
+    const softListItems = soft.querySelectorAll("li");
 
-  // ---------------------------
-  // Calcul end basé sur la largeur (horizontal mapping)
-  // ---------------------------
-  const computedEnd = () => {
-    const vw = window.innerWidth;
-    // facteur à ajuster si tu veux l'animation plus longue ou plus courte
-    const factor = 2;
-    return Math.max(stack.scrollWidth || vw, Math.round(vw * factor));
-  };
+    gsap.set(
+      [hardTitle, ...hardListItems, softTitle, ...softListItems],
+      { autoAlpha: 0, x: "80vw" }
+    );
 
-  // ---------------------------
-  // Timeline scrubbée
-  // ---------------------------
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top top",
-      end: () => `+=${computedEnd()}`,
-      scrub: 0.7,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      markers: true // désactive après debug
-    }
-  });
+    // Eviter overflow visuel
+    section.style.overflow = "hidden";
 
-  // 1) Animer le fond de #ebe8db vers un gris très foncé (#2a2a2a ici)
-  tl.to(section, { backgroundColor: "#000", duration: 0.3, ease: "none" }, 0);
-  // 2) Tweens de contenu : faire apparaître les deux colonnes
-  //    on garde les mêmes positions de départ et on les fait entrer rapidement
-  tl.to(hard, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, 0)
-    .to(soft, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, 0);
+    // ---------------------------
+    // Calcul end basé sur la largeur
+    // ---------------------------
+    const computedEnd = () => {
+      const vw = window.innerWidth;
+      const factor = 1;
+      return Math.max(stack.scrollWidth || vw, Math.round(vw * factor));
+    };
 
-  // Cleanup
-  return () => {
-    tl.kill();
-    ScrollTrigger.getAll().forEach(st => st.kill());
-    section.style.overflow = "";
-    // optionnel : remettre la couleur initiale (ou laisser telle quelle)
-    // section.style.backgroundColor = "";
-  };
-}, []);
+    // ---------------------------
+    // Timeline scrubbée
+    // ---------------------------
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".skills-section",
+        start: "top top",
+        end: () => `+=${computedEnd()}`,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        markers: true, // désactiver après debug
+      }
+    });
+
+    // Colonnes entrent
+    tl.to(hard, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, 0)
+      .to(soft, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, 0);
+
+    // Hard Skills : titre puis li en cascade
+    tl.to(hardTitle, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, ">-0.2")
+      .to(
+        hardListItems,
+        { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.12 },
+        ">-0.1"
+      );
+
+    // Soft Skills : titre puis li en cascade
+    tl.to(softTitle, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, ">-0.2")
+      .to(
+        softListItems,
+        { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.12 },
+        ">-0.1"
+      );
+
+    // ---------------------------
+    // Cleanup
+    // ---------------------------
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      section.style.overflow = "";
+    };
+  }, []);
 
   return (
     <section className="skills-section" id="skills-page" ref={sectionRef}>

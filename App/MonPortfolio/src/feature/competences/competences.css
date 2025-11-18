@@ -18,8 +18,7 @@
 
 /* === Titre === */
 .competences-title {
-  font-size: clamp(1.6rem, 2.5vw, 2.5rem);
-  color: #8caf70;
+  font-size: 4rem;
   margin: 0;                 /* tout géré par gap */
   line-height: 1.1;
   z-index: 10;
