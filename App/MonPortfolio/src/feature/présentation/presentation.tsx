@@ -25,7 +25,7 @@ export default function Presentation() {
         />
       </div>
       <div className="presentation-right">
-        <h2 className="presentation-title">Présentation</h2>
+        <h2 className="presentation-title">Qui suis-je</h2>
         <div className="presentation-text">
           <p>
             Bonjour ! Je m'appelle Simon Clavel, j'ai 20 ans et je suis étudiant

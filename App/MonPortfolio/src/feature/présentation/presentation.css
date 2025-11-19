@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 2rem;       /* padding réduit pour tenir dans 100vh */
   background-color: #ebe8db;
   gap: 2rem;
   position: relative;
@@ -35,13 +34,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 80vh;
   overflow: hidden;
 }
 
 .presentation-img {
-  width: 220px;        /* réduit pour tenir */
-  height: auto;
+  height: 100vh;
+  width: auto;        /* réduit pour tenir */
   border-radius: 20px;
   object-fit: cover;
 }
