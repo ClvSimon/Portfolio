@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./accueil.css";
 import backgroundImage from "../../assets/fond-accueil.png";
 import logo from "../../assets/logo.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Accueils() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -12,13 +15,14 @@ export default function Accueils() {
   useEffect(() => {
     const logoEl = logoRef.current;
     const contentEl = contentRef.current;
-    if (!logoEl || !contentEl) return;
+    const bgEl = contentEl?.querySelector<HTMLDivElement>(".animated-background");
+    if (!logoEl || !contentEl || !bgEl) return;
 
     const ratio = logoEl.naturalHeight / logoEl.naturalWidth || 1;
 
+    // Timeline pour le logo
     const tl = gsap.timeline({ defaults: { ease: "power2.inOut" } });
 
-    // Animation logo
     tl.to(logoEl, {
       x: -window.innerWidth / 2 + 230,
       y: -window.innerHeight / 2 + 250,
@@ -27,11 +31,29 @@ export default function Accueils() {
       duration: 3,
     });
 
-    // Apparition du contenu
     tl.to(contentEl, { opacity: 1, duration: 1 }, "+=1");
 
+    // Animation du fond au scroll
+    // Animation du fond au scroll (de sombre à clair)
+    gsap.fromTo(
+      bgEl,
+      { scale: 1, filter: "blur(0px) brightness(1)" }, // état initial : zoom + flou + sombre
+      {
+        scale: 1.2,                             // état final : normal
+        filter: "blur(4px) brightness(0.3)",    // état final : plus flou + lumineux
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+
+
     return () => {
-      tl.kill(); // cleanup de l'animation
+      tl.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 

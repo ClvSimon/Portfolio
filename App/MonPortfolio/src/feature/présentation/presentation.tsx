@@ -8,44 +8,126 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Presentation() {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const leftColumn = containerRef.current.querySelector<HTMLDivElement>(
+      ".presentation-left"
+    );
+    const title = containerRef.current.querySelector<HTMLHeadingElement>(
+      ".presentation-title"
+    );
+
+    // Pin de l'image
+    if (leftColumn) {
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: leftColumn,
+        pinSpacing: false,
+      });
+    }
+
+    // Pin du titre en parallèle
+    if (title) {
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: title,
+        pinSpacing: false,
+      });
+    }
+
+    // Animation des paragraphes
+    const paragraphs = containerRef.current.querySelectorAll<HTMLParagraphElement>(
+      ".presentation-text p"
+    );
+
+    paragraphs.forEach((p) => {
+      // apparition progressive
+      gsap.fromTo(
+        p,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: p,
+            start: "top 80%", // commence un peu avant le milieu
+            end: "top 50%",   // milieu de l'écran
+            scrub: true,
+          },
+        }
+      );
+
+      // disparition progressive
+      gsap.fromTo(
+        p, 
+        { opacity: 1, y: -50},
+        {
+          opacity: 0,
+          y:0,
+          scrollTrigger: {
+            trigger: p,
+            start: "top 50%",
+            end: "top 10%",
+            scrub: true,
+        },
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
+
 
   return (
     <section ref={containerRef} className="page2 presentation-container">
-        <div className="bottom-center">
-          <div className="bottom-center1">Explorez mon monde :</div>
-          <div className="bottom-center2">
-            Un mélange de parcours, de compétences, de projets et de passions.
-          </div>
-        </div>
+      <h2 className="presentation-title">Qui suis-je ?</h2>
       <div className="presentation-left">
         <img
+          ref={imgRef}
           src={profilePic}
           alt="Simon Clavel"
           className="presentation-img"
         />
       </div>
       <div className="presentation-right">
-        <h2 className="presentation-title">Qui suis-je</h2>
         <div className="presentation-text">
           <p>
             Bonjour ! Je m'appelle Simon Clavel, j'ai 20 ans et je suis étudiant
-            en IUT Informatique. Je suis patient, curieux et passionné par
-            l'apprentissage constant.
+            en IUT Informatique Réalisation d'applications : conception, développement, validation à Blagnac. 
           </p>
           <p>
-            J'adore la nature, la pêche, le foot et la pétanque. J'aime
-            explorer de nouvelles activités, comprendre comment les choses
-            fonctionnent et relever de nouveaux défis.
-          </p>
-          <p>
-            Dans mes projets et études, je mets toujours un point d'honneur à
-            être rigoureux et créatif. Je m'intéresse aussi au développement
-            web et à la conception de sites.
-          </p>
-          <p>
-            Je suis motivé, sociable et j'aime collaborer avec des équipes pour
+            Je suis sociable, patient, curieux, passionné par
+            l'apprentissage constant et j'aime collaborer avec des équipes pour
             créer des projets innovants et durables.
           </p>
+          <p>
+            Je suis un passionné de sport, de toute variété, notamment le rugby, le tennis, l'athletisme, 
+            mais aussi le billard, les flechettes et surtout le foot ! visca el barca !
+          </p>
+            
+          <p>
+            J’ai aussi un vrai amour pour la nature et pour tout ce qu’elle offre : 
+            paysages, calme et moments de contemplation. La pêche est donc pour moi 
+            une manière de vivre pleinement ces instants, entre patience, émerveillement 
+            et plaisir de la découverte.
+          </p>
+            
+            
+          <p>
+             J’aime partir à la découverte de nouvelles activités, comprendre comment elles 
+             fonctionnent et relever des défis. Si vous avez l’occasion de me montrer quelque 
+             chose de nouveau, je serais ravi d’essayer et d’apprendre à vos côtés !
+          </p>
+          
         </div>
       </div>
     </section>

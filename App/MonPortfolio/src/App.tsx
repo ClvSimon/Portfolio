@@ -10,18 +10,11 @@ import ScrollManager from "./routes/ScrollManager";
 function App() {
   return (
     <>
-      {/* Header fixe en haut */}
       <Header />
 
-      {/* Toutes les sections scrollables passent dans ScrollManager */}
       <ScrollManager
-        sections={[
-          <Accueils />,
-          <Presentation />,
-          <Parcours />,
-          <Skills />,
-          <Competences />,
-        ]}
+        verticalSections={[<Accueils />, <Presentation />]}
+        horizontalSections={[<Parcours />, <Skills />, <Competences />]}
       />
     </>
   );

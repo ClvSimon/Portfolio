@@ -1,76 +1,72 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, type ReactElement } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "./scrollManager.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface ScrollManagerProps {
-  sections: React.ReactNode[];
+  verticalSections?: ReactElement[];
+  horizontalSections?: ReactElement[];
 }
 
-export default function ScrollManager({ sections }: ScrollManagerProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const horizontalRef = useRef<HTMLDivElement | null>(null);
+const ScrollManager: React.FC<ScrollManagerProps> = ({
+  verticalSections = [],
+  horizontalSections = [],
+}) => {
+  const verticalRef = useRef<HTMLDivElement>(null);
+  const horizontalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const horizontalWrapper = horizontalRef.current;
-    if (!horizontalWrapper) return;
+    if (horizontalSections.length > 0 && horizontalRef.current) {
+      const sections = horizontalRef.current.children;
+      const totalWidth = horizontalRef.current.scrollWidth;
 
-    const setSizesAndTrigger = () => {
-      const horizontalSections = Array.from(horizontalWrapper.children) as HTMLElement[];
-      const count = horizontalSections.length;
-
-      const totalWidth = window.innerWidth * count; // largeur totale des sections horizontales
-      const travel = totalWidth - window.innerWidth; // distance réelle à parcourir
-
-      // supprime anciens ScrollTriggers liés au wrapper avant d'en recréer un
-      ScrollTrigger.getAll().forEach(st => {
-        if (st.trigger === horizontalWrapper) st.kill();
-      });
-
-      gsap.to(horizontalWrapper, {
-        x: () => `-${travel}px`,
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
         ease: "none",
         scrollTrigger: {
-          trigger: horizontalWrapper,
-          start: "top top",
-          end: () => `+=${travel}`,
-          scrub: true,
+          trigger: horizontalRef.current,
           pin: true,
-          anticipatePin: 1,
+          scrub: 0, // scroll classique, plus de smooth
+          end: () => `+=${totalWidth - window.innerWidth}`,
         },
       });
-
-      ScrollTrigger.refresh();
-    };
-
-    setSizesAndTrigger();
-    window.addEventListener("resize", setSizesAndTrigger);
+    }
 
     return () => {
-      window.removeEventListener("resize", setSizesAndTrigger);
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
-  }, []);
+  }, [horizontalSections]);
 
   return (
-    <div ref={containerRef} className="scroll-container">
-      {/* Pages verticales : garder 2 pages avant l'horizontal */}
-      {sections.slice(0, 2).map((section, i) => (
-        <div key={i} className="scroll-section">
-          {section}
+    <div ref={verticalRef}>
+      {/* Sections verticales */}
+      {verticalSections.map((Section, index) => (
+        <div key={index} style={{ minHeight: "100vh" }}>
+          {Section}
         </div>
       ))}
 
-      {/* Pages horizontales */}
-      <div ref={horizontalRef} className="horizontal-wrapper">
-        {sections.slice(2).map((section, i) => (
-          <div key={i} className="scroll-section">
-            {section}
-          </div>
-        ))}
-      </div>
+      {/* Container horizontal */}
+      {horizontalSections.length > 0 && (
+        <div
+          ref={horizontalRef}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: `${horizontalSections.length * 100}vw`,
+            height: "100vh",
+          }}
+        >
+          {horizontalSections.map((Section, index) => (
+            <div key={index} style={{ flex: "0 0 100vw", height: "100%" }}>
+              {Section}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default ScrollManager;

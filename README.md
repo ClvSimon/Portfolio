@@ -46,3 +46,8 @@ https://www.cristianoronaldo.com/#partners
 https://heymo.webflow.io/
 
 https://codepen.io/akapowl/pen/BaYKMrB?editors=0010
+
+
+
+mettre qulque par sur accueil une accroche : Explorez mon monde :
+Un mélange de parcours, de compétences, de projets et de passions.

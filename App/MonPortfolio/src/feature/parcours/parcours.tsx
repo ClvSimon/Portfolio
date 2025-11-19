@@ -20,26 +20,28 @@ type Entry = {
 
 const ENTRIES: Entry[] = [
   {
-    year: "2025",
-    title: "Licence Informatique (en cours)",
-    institution: "Université X",
-    details: "Spécialisation en développement web et algorithmes",
-    bgImage: bg1,
+    year: "2022",
+    title: "Baccalauréat Général",
+    institution: "Lycee François Mitterrand, 82200 Moissac",
+    details: "Spécialitées : Math, NSI, Physique",
+    bgImage: bg3,
   },
   {
     year: "2024",
-    title: "DUT / IUT Informatique",
-    institution: "IUT Y",
-    details: "Projets : audit app, modélisation graphes",
+    title: "DUT Informatique",
+    institution: "IUT Blagnac, 31700 Blagnac",
+    details: "Spécialisation : Réalisation d'applications (conception, développement, validation)",
     bgImage: bg2,
   },
   {
-    year: "2022",
-    title: "Baccalauréat",
-    institution: "Lycée Z",
-    details: "Section scientifique",
-    bgImage: bg3,
+    year: "2025",
+    title: "BUT Informatique (en cours)",
+    institution: "IUT Blagnac, 31700 Blagnac",
+    details: "Spécialisation : Réalisation d'applications (conception, développement, validation)",
+    bgImage: bg1,
   },
+  
+  
 ];
 
 export default function ParcoursPage() {
@@ -119,7 +121,7 @@ export default function ParcoursPage() {
 
   return (
     <section ref={containerRef} className="parcours-section page3">
-      <h2 className="parcours-title">Parcours</h2>
+      <h2 className="parcours-title">Mon Parcours</h2>
 
       <div className="parcours-timeline-wrapper">
         <div className="parcours-left">
