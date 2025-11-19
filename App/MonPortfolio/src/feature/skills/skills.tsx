@@ -6,98 +6,77 @@ import "./skills.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const Skills: React.FC = () => {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const stackRef = useRef<HTMLDivElement | null>(null);
-  const hardRef = useRef<HTMLElement | null>(null);
-  const softRef = useRef<HTMLElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const stack = stackRef.current;
-    const hard = hardRef.current;
-    const soft = softRef.current;
-    if (!section || !stack || !hard || !soft) return;
+  const section = sectionRef.current;
+  if (!section) return;
 
-    // ---------------------------
-    // Initial states
-    // ---------------------------
+  const ctx = gsap.context(() => {
+    const columns = gsap.utils.toArray<HTMLElement>(".skills-column", section);
 
-    // Colonnes : invisibles et décalées
-    gsap.set([hard, soft], { autoAlpha: 0, x: "80vw" });
-
-    // Titres + chaque li séparément
-    const hardTitle = hard.querySelector("h3");
-    const hardListItems = hard.querySelectorAll("li");
-    const softTitle = soft.querySelector("h3");
-    const softListItems = soft.querySelectorAll("li");
-
-    gsap.set(
-      [hardTitle, ...hardListItems, softTitle, ...softListItems],
-      { autoAlpha: 0, x: "80vw" }
-    );
-
-    // Eviter overflow visuel
-    section.style.overflow = "hidden";
-
-    // ---------------------------
-    // Calcul end basé sur la largeur
-    // ---------------------------
-    const computedEnd = () => {
-      const vw = window.innerWidth;
-      const factor = 1;
-      return Math.max(stack.scrollWidth || vw, Math.round(vw * factor));
-    };
-
-    // ---------------------------
-    // Timeline scrubbée
-    // ---------------------------
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".skills-section",
-        start: "top top",
-        end: () => `+=${computedEnd()}`,
-        scrub: true,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        markers: true, // désactiver après debug
-      }
+    // Initialisation des colonnes (titre + li invisibles et décalés)
+    columns.forEach(column => {
+      const title = column.querySelector<HTMLElement>("h3");
+      const items = Array.from(column.querySelectorAll<HTMLElement>("li"));
+      gsap.set([title, ...items], { autoAlpha: 0, x: "60vw" });
     });
 
-    // Colonnes entrent
-    tl.to(hard, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, 0)
-      .to(soft, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, 0);
+    // Timeline principale pour l'apparition des titres et des items
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => `+=${section.scrollWidth}`, // durée totale du scroll
+        scrub: 0.25,
+        markers: true,
+      },
+    });
 
-    // Hard Skills : titre puis li en cascade
-    tl.to(hardTitle, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, ">-0.2")
-      .to(
-        hardListItems,
-        { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.12 },
-        ">-0.1"
-      );
+    columns.forEach(column => {
+      const title = column.querySelector<HTMLElement>("h3");
+      const items = gsap.utils.toArray<HTMLElement>("li", column);
 
-    // Soft Skills : titre puis li en cascade
-    tl.to(softTitle, { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, ">-0.2")
-      .to(
-        softListItems,
-        { x: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out", stagger: 0.12 },
-        ">-0.1"
-      );
+      tl.to(title, { x: 0, autoAlpha: 1, duration: 0.28, ease: "power1.out" }, ">-0.15")
+        .to(items, { x: 0, autoAlpha: 1, duration: 0.18, ease: "power1.out", stagger: 0.04 }, ">-0.08");
+    });
 
-    // ---------------------------
-    // Cleanup
-    // ---------------------------
-    return () => {
-      tl.kill();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-      section.style.overflow = "";
-    };
-  }, []);
+    tlRef.current = tl;
+
+    // ===== ScrollTrigger indépendant pour le container =====
+    const columnsContainer = section.querySelector<HTMLElement>(".skills-columns");
+
+    gsap.to(columnsContainer, {
+      x: "100vh",          // distance à parcourir
+      ease: "none",        // mouvement linéaire
+      scrollTrigger: {
+        trigger: section,
+        start: `+=${section.scrollWidth/2}`,  // commence dès que la section arrive en haut
+        end: () => `+=${section.scrollWidth}`, // durée du scroll
+        scrub: 0.25,
+        markers: true,
+      },
+    });
+
+  }, section);
+
+  return () => {
+    if (tlRef.current) {
+      tlRef.current.kill();
+      tlRef.current = null;
+    }
+    ScrollTrigger.getAll().forEach(st => st.kill());
+    ctx.revert();
+  };
+}, []);
+
+
 
   return (
     <section className="skills-section" id="skills-page" ref={sectionRef}>
-      <div className="skills-columns" ref={stackRef}>
-        <article className="skills-column" ref={hardRef} aria-label="Hard Skills">
+      <div className="skills-columns">
+        <article className="skills-column" aria-label="Hard Skills">
           <h3 className="skills-subtitle">Hard Skills</h3>
           <ul className="skills-list">
             <li>Fullstack : Spring Boot, Node.js, TypeScript</li>
@@ -110,14 +89,14 @@ const Skills: React.FC = () => {
 
         <div className="skills-separator" aria-hidden="true" />
 
-        <article className="skills-column" ref={softRef} aria-label="Soft Skills">
+        <article className="skills-column" aria-label="Soft Skills">
           <h3 className="skills-subtitle">Soft Skills</h3>
           <ul className="skills-list">
             <li>Communication claire et synthétique</li>
             <li>Leadership technique et mentorship</li>
             <li>Résolution de problèmes et pragmatisme</li>
             <li>Attention au détail et fidélité visuelle</li>
-            <li>Collaboration inter‑équipes et pédagogie</li>
+            <li>Collaboration inter-équipes et pédagogie</li>
           </ul>
         </article>
       </div>
