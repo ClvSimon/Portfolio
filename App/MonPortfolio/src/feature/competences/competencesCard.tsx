@@ -30,7 +30,7 @@ export default function CompetenceCard({ title, levels, isActive = true }: Props
     <div
       className="competence-card"
       style={{
-        backgroundColor: isActive ? "#8caf70" : "#567239",
+        backgroundColor: isActive ? "#b5d4b1" : "#8caf70",
       }}
     >
       {isActive && (

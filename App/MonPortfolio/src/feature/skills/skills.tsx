@@ -30,7 +30,7 @@ const Skills: React.FC = () => {
         start: "top top",
         end: () => `+=${section.scrollWidth}`, // durée totale du scroll
         scrub: 0.25,
-        markers: true,
+        markers: false,
       },
     });
 
@@ -55,7 +55,7 @@ const Skills: React.FC = () => {
         start: `+=${section.scrollWidth/2}`,  // commence dès que la section arrive en haut
         end: () => `+=${section.scrollWidth}`, // durée du scroll
         scrub: 0.25,
-        markers: true,
+        markers: false,
       },
     });
 
@@ -77,7 +77,10 @@ const Skills: React.FC = () => {
     <section className="skills-section" id="skills-page" ref={sectionRef}>
       <div className="skills-columns">
         <article className="skills-column" aria-label="Hard Skills">
-          <h3 className="skills-subtitle">Hard Skills</h3>
+          <h3 className="skills-subtitle">
+            Hard Skills
+            <span className="skills-subtitle-line"></span>
+          </h3>
           <ul className="skills-list">
             <li>Fullstack : Spring Boot, Node.js, TypeScript</li>
             <li>Frontend : React, GSAP, animation scroll-driven</li>
@@ -90,7 +93,10 @@ const Skills: React.FC = () => {
         <div className="skills-separator" aria-hidden="true" />
 
         <article className="skills-column" aria-label="Soft Skills">
-          <h3 className="skills-subtitle">Soft Skills</h3>
+          <h3 className="skills-subtitle">
+            Soft Skills
+            <span className="skills-subtitle-line"></span>
+          </h3>
           <ul className="skills-list">
             <li>Communication claire et synthétique</li>
             <li>Leadership technique et mentorship</li>

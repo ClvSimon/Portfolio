@@ -9,6 +9,7 @@ mettre dans le header : presentation, formation(diplome, parcours), competances,
 
 les coiuleurs du site : 
 
+#b5d4b1
 titre et autre : 
 #8caf70
 hover : 
@@ -47,7 +48,9 @@ https://heymo.webflow.io/
 
 https://codepen.io/akapowl/pen/BaYKMrB?editors=0010
 
+https://tympanus.net/codrops/2025/06/17/building-an-infinite-marquee-along-an-svg-path-with-react-motion/
 
+https://codepen.io/filipz/pen/QwwOEQZ
 
 mettre qulque par sur accueil une accroche : Explorez mon monde :
 Un mélange de parcours, de compétences, de projets et de passions.

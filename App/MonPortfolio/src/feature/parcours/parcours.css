@@ -1,28 +1,40 @@
 /* SECTION PARCOURS — prend exactement 100vh, sans débordements */
 .parcours-section {
-  min-height: 100vh;      /* obligatoire pour que la section prenne tout l'écran */
-  height: 100vh;          /* force la cohérence sur tous les navigateurs */
+  min-height: 100vh;
+  height: 100vh;
   background-color: #ebe8db;
   border-width:5px;
   border-color: red;
   border-style: solid;
-  box-sizing: border-box; /* empêche padding d'augmenter la hauteur réelle */
-  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centre le titre horizontalement */
+  justify-content: flex-start; /* haut de la page */
 }
 
 /* titre */
 .parcours-title {
   position: relative;
-  text-align: center;
   font-size: 4rem;
-  top: 1rem;
-  color: #8caf70;
+  z-index: 2; /* titre au-dessus du trait */
+}
+
+.parcours-title-line {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 50%;
+  width: 110%;        /* Trait déjà complet */
+  background: #b5d4b1;
+  transform: translateX(-110%); /* On le met à droite, hors de sa place */
+  z-index: -1;        /* Derrière le titre */
 }
 
 /* wrapper timeline + items */
 .parcours-timeline-wrapper {
   max-width: 1000px;
-  margin-left: 4rem;
+  margin-left: 0;
   display: flex;
   gap: 2rem;
   position: flex;
@@ -46,7 +58,7 @@
 .parcours-line {
   width: 6px;
   height: 60vh;
-  background: #8caf70;
+  background: #435966;
   transform-origin: top center;
   will-change: transform;
   border-radius: 6px;
@@ -60,9 +72,8 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #435966;
+  background: #b5d4b1;
   box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 0 6px rgba(173,207,115,0.08);
-  z-index: 6;
   will-change: transform;
 }
 
@@ -75,11 +86,10 @@
 /* item */
 .parcours-item {
   display: flex;
-  align-items: flex-start;
   padding: 1rem 1rem;
   margin-bottom: 1.5rem;
   height: auto;      /* hauteur minimum plus grande */
-  width: 80vw;      /* hauteur minimum plus grande */
+  width: 100%;      /* hauteur minimum plus grande */
   box-shadow: 0 4px 18px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden; /* gardé */
@@ -95,7 +105,6 @@
   background-size: cover;
   background-position: center;
   filter: grayscale(100%);
-  z-index: 0;
   transition: filter 0.5s ease;
 }
 
@@ -110,15 +119,13 @@
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
 }
 
 .parcours-item-year {
   position: relative;
-  z-index: 2;
   min-width: 72px;
   font-weight: 700;
-  color: #8caf70;
+  color: #b5d4b1;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -131,16 +138,14 @@
 
 .parcours-item-title {
   position: relative;
-  z-index: 2;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #8caf70;
+  color: #b5d4b1;
   margin-bottom: 0.25rem;
 }
 
 .parcours-item-institution {
   position: relative;
-  z-index: 2;
   color: #fff;
   font-size: 1.25rem;
   font-weight: 600;
@@ -149,7 +154,6 @@
 
 .parcours-item-details {
   position: relative;
-  z-index: 2;
   color: #fff;
   font-size: 1.25rem;
   line-height: 1.4;

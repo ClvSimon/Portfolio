@@ -16,13 +16,29 @@
   perspective: 1000px;
 }
 
-/* === Titre === */
 .competences-title {
+  position: relative;
+  display: inline-block;
   font-size: 4rem;
-  margin: 0;                 /* tout géré par gap */
+  margin: 0;
   line-height: 1.1;
   z-index: 10;
 }
+
+.competences-title-line {
+  display: inline-block;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 50%;
+  width: 110%;        /* Trait déjà complet */
+  background: #b5d4b1;
+  transform: translateX(-100%); /* On le met à droite, hors de sa place */
+  z-index: -1;        /* Derrière le titre */
+}
+
+
+
 
 /* === Carousel 3D (NE PAS TOUCHER au style du carrousel) === */
 .competences-carousel {
@@ -52,10 +68,9 @@
 
 .competences-button {
   background: #fff0;         /* transparent but easier to style later */
-  color: #8caf70;
+  color: #b5d4b1;
   border: 2px solid rgba(86,114,57,0.12);
   backdrop-filter: blur(4px);
-  border-radius: 8px;
   font-size: 1.6rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -76,39 +91,16 @@
   transform: translateY(-1px) scale(.995);
 }
 
-/* === Responsiveness === */
-@media (max-width: 720px) {
-  .competences-section {
-    gap: 2rem;
-    padding: 2rem 1rem;
-  }
-
-  .competences-carousel {
-    width: min(86vw, 360px);
-    height: calc(min(86vw, 360px) * 0.65);
-  }
-
-  .competences-buttons-container {
-    max-width: 320px;
-    gap: 1rem;
-  }
-
-  .competences-button {
-    font-size: 1.4rem;
-    padding: 0.45rem 0.9rem;
-  }
-}
 /*__________________ css de la card en bas __________________*/
 
 .competence-card {
   position: relative;
   width: 250px;         /* plus large */
   height: 290px;        /* plus haut */
-  background-color: #8caf70;
+  background-color: #b5d4b1;
   display: flex;
   flex-direction: column;    /* empile verticalement title / level / projects */
   align-items: center;
-  border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
@@ -119,8 +111,6 @@
   width: 100%;
   background-size: cover; /* pour que l'image remplisse le bloc */
   background-position: center; /* centrer l'image */
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
   color: #435966;
 }
 
@@ -138,19 +128,19 @@
   flex: 1;
   padding: 0.35rem 0.5rem;
   font-size: 15px;
-  border-radius: 0px;
   background-color: #435966;
   color: white;
   white-space: nowrap;
   transition: background-color 0.4s;
+  border-radius: 0px;
 }
 
 .competence-card-level-buttons button.active {
-  background-color: #8caf70;
+  background-color: #b5d4b1;
 }
 
 .competence-card-level-buttons button:hover {
-  background-color: #8caf70;
+  background-color: #b5d4b1;
 }
 
 .competence-card-description {
@@ -173,5 +163,5 @@
 }
 
 .competence-card-projects a:hover {
-  color: #567239;
+  color: #8caf70;
 }

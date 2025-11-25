@@ -32,6 +32,16 @@
   text-align: center;   /* centre le texte si sur plusieurs lignes */
 }
 
+.title-line {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 50%;
+  width: 110%;        /* Trait déjà complet */
+  background: #b5d4b1;
+  transform: translateX(100%); /* On le met à droite, hors de sa place */
+  z-index: -1;        /* Derrière le titre */
+}
 
 /* colonne droite */
 .presentation-right {

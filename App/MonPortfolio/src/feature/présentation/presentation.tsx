@@ -41,6 +41,45 @@ export default function Presentation() {
         pinSpacing: false,
       });
     }
+    
+    // Animation d'entrée de l'image quand on arrive sur la section
+    if (imgRef.current) {
+      gsap.fromTo(
+        imgRef.current,
+        { opacity: 0, x: -300 }, // image en dessous et invisible
+        {
+          opacity: 1,
+          x: 0,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top%", // commence quand la section arrive dans le viewport
+            end: "top 40%",
+            scrub: true,
+          },
+        }
+      );
+    }
+
+    // Animation du trait derrière le titre
+    const titleLine = containerRef.current.querySelector(".title-line");
+
+    if (titleLine) {
+      gsap.fromTo(
+        titleLine,
+        { x: "100%" },     // Hors de la zone, à droite
+        {
+          x: "-5%",
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            end: "top 10%",
+            scrub: true,
+          },
+        }
+      );
+    }
+
 
     // Animation des paragraphes
     const paragraphs = containerRef.current.querySelectorAll<HTMLParagraphElement>(
@@ -80,6 +119,25 @@ export default function Presentation() {
       });
     });
 
+    // Animation de sortie de l'image quand on quitte la section
+    if (imgRef.current) {
+      gsap.fromTo(
+        imgRef.current,
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          x: -300, 
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "bottom 80%",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }
+
+
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
@@ -89,7 +147,10 @@ export default function Presentation() {
 
   return (
     <section ref={containerRef} className="page2 presentation-container">
-      <h2 className="presentation-title">Qui suis-je ?</h2>
+      <h2 className="presentation-title">
+        Qui suis-je ?
+        <span className="title-line"></span>
+      </h2>
       <div className="presentation-left">
         <img
           ref={imgRef}

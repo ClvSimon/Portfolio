@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6,
 .skills-subtitle {
   font-family: var(--title-font);
   font-weight: 600; /* ou 700 selon ton goût */
-  color: #8caf70;
+  color: #435966;
 }
 
 /* S'assurer que les listes et paragraphes héritent du sans‑serif */

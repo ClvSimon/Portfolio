@@ -3,6 +3,9 @@ import { gsap } from "gsap";
 import CompetenceCard from "./competencesCard";
 import COMPETENCES from "./competencesData.json";
 import "./competences.css";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CompetencesPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -71,10 +74,46 @@ export default function CompetencesPage() {
     });
   }, [rotationIndex]);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const titleLine = container.querySelector<HTMLElement>(".competences-title-line");
+    if (!titleLine) return;
+
+    gsap.set(titleLine, { x: "-100%" });
+
+    const anim = gsap.to(titleLine, {
+      x: "-5%",
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: container,
+        start: "top 80%",
+        end: "top 10%",
+        scrub: true,
+      },
+    });
+    return () => {
+        // nettoyage propre du ScrollTrigger et de l'animation
+        if (anim && (anim as any).scrollTrigger) {
+          try {
+            (anim as any).scrollTrigger.kill();
+          } catch {}
+        }
+        try {
+          anim.kill();
+        } catch {}
+        ScrollTrigger.refresh();
+      };
+    }, [containerRef]);
+
   return (
     <section className="competences-section" ref={containerRef}>
       {/* Titre */}
-      <h2 className="competences-title">Compétences</h2>
+      <h2 className="competences-title">
+        Compétences
+        <span className="competences-title-line"></span>
+      </h2>
 
       {/* Carousel */}
       <div className="competences-carousel">

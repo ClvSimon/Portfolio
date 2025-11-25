@@ -19,7 +19,7 @@
 
 /* Chaque rectangle */
 .nav-item {
-  background-color: #8caf70; /* vert pour titre */
+  background-color: #435966; /* vert pour titre */
   color: #ffffff; /* texte blanc */
   width: 160px; /* même largeur pour tous */
   height: 40px; /* pas trop épais */
@@ -35,7 +35,7 @@
 
 /* Hover / effet sur le rectangle */
 .nav-item:hover {
-  background-color: #435966; /* vert clair au survol */
+  background-color: #b5d4b1; /* vert clair au survol */
   transform: translateY(-3px); /* léger mouvement vers le haut */
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }

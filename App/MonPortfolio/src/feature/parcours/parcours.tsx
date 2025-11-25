@@ -111,6 +111,25 @@ export default function ParcoursPage() {
     const rafRefresh = () => requestAnimationFrame(() => ScrollTrigger.refresh());
     window.addEventListener("load", rafRefresh);
 
+    const titleLine = containerRef.current?.querySelector(".parcours-title-line");
+
+    if (titleLine && containerRef.current) {
+      gsap.fromTo(
+        titleLine,
+        { x: "-100%" }, // commence à gauche
+        {
+          x: "-5%",       // revient à sa place
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            end: "top 10%",
+            scrub: true,
+          },
+        }
+      );
+    }
+
     return () => {
       tl.kill();
       ScrollTrigger.getAll().forEach((s) => s.kill());
@@ -121,7 +140,10 @@ export default function ParcoursPage() {
 
   return (
     <section ref={containerRef} className="parcours-section page3">
-      <h2 className="parcours-title">Mon Parcours</h2>
+      <h2 className="parcours-title">
+        <span className="parcours-title-line"></span>
+        Mon Parcours
+      </h2>
 
       <div className="parcours-timeline-wrapper">
         <div className="parcours-left">

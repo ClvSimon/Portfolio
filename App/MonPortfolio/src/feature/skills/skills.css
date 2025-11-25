@@ -53,6 +53,18 @@
   font-size: 4rem; 
   font-weight: 600; 
 }
+
+.skills-subtitle-line {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 50%;
+  left: -5%;           
+  width: 110%;       
+  background: #b5d4b1;
+  z-index: -1;
+}
+
 .skills-list { 
   font-size: 1.25rem; 
   list-style: none; 
