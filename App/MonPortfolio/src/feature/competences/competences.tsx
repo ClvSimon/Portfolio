@@ -73,39 +73,41 @@ export default function CompetencesPage() {
       });
     });
   }, [rotationIndex]);
+/**_________________________________ICI ANIMATION TITRE__________________________________________________*/
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+useEffect(() => {
+  const container = containerRef.current;
+  if (!container) return;
 
-    const titleLine = container.querySelector<HTMLElement>(".competences-title-line");
-    if (!titleLine) return;
+    const offsetTop = container.offsetTop;
 
-    gsap.set(titleLine, { x: "-100%" });
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      start: `${offsetTop + window.innerWidth * 1} top`, // décale de 2 pages
+      end: `${offsetTop + window.innerWidth * 2} top`,   // fin de l'animation
+      scrub: 0.4,
+      markers: true,
+    }
+  });
 
-    const anim = gsap.to(titleLine, {
-      x: "-5%",
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: container,
-        start: "top 80%",
-        end: "top 10%",
-        scrub: true,
-      },
-    });
-    return () => {
-        // nettoyage propre du ScrollTrigger et de l'animation
-        if (anim && (anim as any).scrollTrigger) {
-          try {
-            (anim as any).scrollTrigger.kill();
-          } catch {}
-        }
-        try {
-          anim.kill();
-        } catch {}
-        ScrollTrigger.refresh();
-      };
-    }, [containerRef]);
+  tl.fromTo(
+    ".competences-title-line",
+    { x: "-100%", ease: "power2.out" },  // État initial
+    { x: "-5%", ease: "power2.out" }  // État final
+  );
+
+}, []);
+
+
+
+
+
+
+
+
+
+
 
   return (
     <section className="competences-section" ref={containerRef}>
