@@ -1,0 +1,195 @@
+/* .projet-section {
+  position: relative;   
+
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+  z-index: 20;
+  
+} */
+
+.projet-section {
+  position: relative;
+  width: 100%;
+  height: 80vh;          
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #ebe8db;
+  overflow: hidden;
+}
+
+/*_____________________________________ GAUCHE _____________________________________*/
+
+.projet-left {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOP */
+.left-top {
+  height: 20%;
+  display: flex;
+  align-items: center;  /* titre en haut */
+}
+
+.projet-title {
+  font-size: 2rem;
+}
+
+/* MIDDLE */
+.left-middle {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  gap: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.projet-info {
+  font-size: 1.5rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* BOTTOM */
+.left-bottom {
+  height: 60%;
+  display: flex;
+  align-items: flex-start;  /* tags en bas */
+}
+
+.projet-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.tag {
+  background: #b5d4b1;
+  padding: 12px;
+  border-radius: 40px;
+  text-align: center;
+  height: 20px;
+}
+
+/*_____________________________________ CENTRE _____________________________________*/
+
+.projet-center {
+  padding-left: 10px;
+  padding-right: 0px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.projet-image-box {
+  flex: 1;
+  height: 70vh;
+  position: relative;       /* nécessaire pour placer les flèches */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+/* Boutons → repositionnés sur les bords */
+.arrow-btn {
+  width: 55px;
+  height: 55px;
+  position: absolute;       /* place les boutons sur le cadre */
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff0;         /* transparent but easier to style later */
+  color: #b5d4b1;
+  border: 2px solid rgba(86,114,57,0.12);
+  backdrop-filter: blur(4px);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: transform 180ms ease, color 180ms ease, box-shadow 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.arrow-btn:hover{
+  color: #435966;
+  box-shadow: 0 6px 18px rgba(60,80,40,0.08);
+}
+
+/* bouton gauche */
+.arrow-btn:first-of-type {
+  left: 15px;               /* bord gauche */
+}
+
+/* bouton droite */
+.arrow-btn:last-of-type {
+  right: 15px;              /* bord droit */
+}
+
+.projet-image{
+  height: 100%;
+  width: 100%
+}
+
+/*_____________________________________ DROITE _____________________________________*/
+
+.projet-right {
+  width: 25%;
+  height: 100%;
+  position: relative;
+}
+
+/* Cercles adaptés à la nouvelle hauteur */
+.big-circle {
+  position: absolute;
+  width: 80vh;        /* ↘ réduit pour tenir dans 80vh */
+  height: 80vh;
+  border-radius: 50%;
+  background: #435966;
+  left: 25%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.big-circle-line{
+  position: absolute;
+  width: 90vh;        /* ↘ réduit pour tenir dans 80vh */
+  height: 90vh;
+  border-radius: 50%;
+  background: transparent;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-width:4px;
+  border-color: #435966;
+  border-style: solid;
+}
+
+.small-circle {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #b5d4b1;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}

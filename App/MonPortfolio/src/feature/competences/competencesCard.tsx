@@ -17,32 +17,19 @@ type Props = {
   isActive?: boolean;
 };
 
-// Import dynamique des images
-const images = import.meta.glob("../../assets/competences/*.png", { eager: true, as: "url" });
-
 export default function CompetenceCard({ title, levels, isActive = true }: Props) {
   const [activeLevel, setActiveLevel] = useState(0);
-
-  // On récupère l'image correspondant au titre
-  const bgImage = images[`../../assets/competences/${title}.png`] || "";
 
   return (
     <div
       className="competence-card"
       style={{
-        backgroundColor: isActive ? "#b5d4b1" : "#8caf70",
+        backgroundColor: isActive ? "#b5d4b1" : "#435966",
       }}
     >
       {isActive && (
         <>
-          <div
-            className="competence-card-title"
-            style={{
-              backgroundImage: bgImage ? `url(${bgImage})` : undefined,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
+          <div className="competence-card-title">
             <h3>{title}</h3>
           </div>
 

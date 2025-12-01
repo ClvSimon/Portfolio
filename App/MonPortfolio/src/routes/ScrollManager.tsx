@@ -7,11 +7,13 @@ gsap.registerPlugin(ScrollTrigger);
 interface ScrollManagerProps {
   verticalSections?: ReactElement[];
   horizontalSections?: ReactElement[];
+  afterVerticalSections?: ReactElement[]; // <-- AJOUT ICI
 }
 
 const ScrollManager: React.FC<ScrollManagerProps> = ({
   verticalSections = [],
   horizontalSections = [],
+  afterVerticalSections = [], // <-- AJOUT ICI
 }) => {
   const verticalRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
@@ -27,7 +29,7 @@ const ScrollManager: React.FC<ScrollManagerProps> = ({
         scrollTrigger: {
           trigger: horizontalRef.current,
           pin: true,
-          scrub: 0, // scroll classique, plus de smooth
+          scrub: 0,
           end: () => `+=${totalWidth - window.innerWidth}`,
         },
       });
@@ -40,6 +42,7 @@ const ScrollManager: React.FC<ScrollManagerProps> = ({
 
   return (
     <div ref={verticalRef}>
+      
       {/* Sections verticales */}
       {verticalSections.map((Section, index) => (
         <div key={index} style={{ minHeight: "100vh" }}>
@@ -65,6 +68,14 @@ const ScrollManager: React.FC<ScrollManagerProps> = ({
           ))}
         </div>
       )}
+
+      {/* Sections verticales APRÈS (nouvelle partie) */}
+      {afterVerticalSections.map((Section, index) => (
+        <div key={"after-" + index}>
+          {Section}
+        </div>
+      ))}
+
     </div>
   );
 };

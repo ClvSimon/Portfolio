@@ -1,0 +1,29 @@
+.autres-section {
+  position: relative;   /* nécessaire pour que z-index fonctionne */
+  height: 20vh;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+  border-width:5px;
+  border-color: red;
+  border-style: solid;
+  background-color: #ebe8db;
+}
+
+.autres-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.autres-track {
+  display: flex;
+  white-space: nowrap;
+}
+
+.autres-text {
+  font-size: 4rem;
+  padding-right: 2rem;
+}

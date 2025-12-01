@@ -6,16 +6,21 @@ import Parcours from "./feature/parcours/parcours";
 import Skills from "./feature/skills/skills";
 import Competences from "./feature/competences/competences";
 import ScrollManager from "./routes/ScrollManager";
+import Projets from "./feature/projets/projets";
+import Autres from "./feature/autres/autres";
 
 function App() {
   return (
     <>
       <Header />
 
+
       <ScrollManager
         verticalSections={[<Accueils />, <Presentation />]}
         horizontalSections={[<Parcours />, <Skills />, <Competences />]}
+        afterVerticalSections={[<Autres/>, <Projets />]}
       />
+
     </>
   );
 }

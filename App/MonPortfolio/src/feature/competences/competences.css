@@ -87,7 +87,7 @@
 }
 
 .competences-button:active {
-  transform: translateY(-1px) scale(.995);
+  transform: translateY(-1px) scale(1);
 }
 
 /*__________________ css de la card en bas __________________*/

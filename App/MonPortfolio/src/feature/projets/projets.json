@@ -1,0 +1,54 @@
+{
+  "projets": [
+    {
+      "titre": "site de e-commerce Lutin&Co",
+      "nombreMembres": 1,
+      "duree": "2 semaines",
+      "technologies": ["React", "GSAP", "CSS", "Typescript"],
+      "images": {
+        "dossier": "portfolio",
+        "fichiers": ["home.png", "about.png", "projets.png", "contact.png"]
+      }
+    },
+    {
+      "titre": "Application bancaire DailyBank",
+      "nombreMembres": 3,
+      "duree": "1 mois",
+      "technologies": ["Node.js", "Socket.io", "Express", "MongoDB"],
+      "images": {
+        "dossier": "chat-app",
+        "fichiers": ["login.png", "chatroom.png", "settings.png"]
+      }
+    },
+    {
+      "titre": "Application d'auditing Bajon Consulting",
+      "nombreMembres": 4,
+      "duree": "6 semaines",
+      "technologies": ["C#", "Unity", "Photoshop"],
+      "images": {
+        "dossier": "jeu-2d",
+        "fichiers": ["menu.jpg", "level1.jpg", "bossfight.jpg"]
+      }
+    },
+    {
+      "titre": "Jeu Akari",
+      "nombreMembres": 5,
+      "duree": "2 mois",
+      "technologies": ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+      "images": {
+        "dossier": "sneakers-shop",
+        "fichiers": ["home.png", "product.png", "panier.png", "checkout.png"]
+      }
+    },
+    {
+      "titre": "Amelioration de FlopEdt",
+      "nombreMembres": 2,
+      "duree": "3 semaines",
+      "technologies": ["React Native", "Firebase"],
+      "images": {
+        "dossier": "app-recettes",
+        "fichiers": ["welcome.png", "liste.png", "detail.png"]
+      }
+    }
+  ]
+}
